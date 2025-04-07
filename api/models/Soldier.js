@@ -3,10 +3,15 @@ module.exports = {
         personalNumber: {
             type: 'string',
             maxLength: 255,
-            required: true
+            required: true,
+            unique: true
         },
         rank: {
-            type: 'number',
+            model: 'rank',
+            required: true
+        },
+        department: {
+            model: 'department',
             required: true
         },
         name: {

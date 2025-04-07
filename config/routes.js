@@ -21,6 +21,26 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
+  'GET /soldier': {
+    controller: 'soldier',
+    action: 'get',
+  },
+
+  'GET /soldier/:id': {
+    controller: 'soldier',
+    action: 'view',
+  },
+
+  'POST /soldier': {
+    controller: 'solider',
+    action: 'create',
+  },
+
+  'PATCH /soldier/:id': {
+    controller: 'soldier',
+    action: 'update',
+  },
+
 
   /***************************************************************************
   *                                                                          *
