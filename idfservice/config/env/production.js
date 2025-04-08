@@ -155,6 +155,7 @@ module.exports = {
     cors: {
       allowOrigins: [
         'https://miluim.vercel.app',
+        'http://miluim.vercel.app',
         'http://localhost:3000',
       ]
     },
@@ -274,8 +275,6 @@ module.exports = {
     onlyAllowOrigins: [
       'https://example.com',
       'https://staging.example.com',
-      'https://miluim.vercel.app',
-      'http://localhost:3000',
     ],
 
 
@@ -398,8 +397,6 @@ module.exports = {
   ***************************************************************************/
   custom: {
     baseUrl: 'https://localhost:5000',
-    frontendUrl: 'https://paymentservice-stg.shibadragon.app',
-    internalEmailAddress: 'no-reply@example.com',
 
     // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
     // stripeSecret: 'sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm',
