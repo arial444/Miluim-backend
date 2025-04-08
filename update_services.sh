@@ -38,4 +38,7 @@ for service in "${services[@]}"; do
     docker compose up --no-deps -d "$service"
 done
 
+echo "==================================================================="
+echo "=========================[ Kuubiiii ]=============================="
 echo "All services processed Kubi Kubiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+echo "==================================================================="
