@@ -20,8 +20,6 @@
  */
 
 module.exports = {
-
-
   /**************************************************************************
   *                                                                         *
   * Tell Sails what database(s) it should use in production.                *
@@ -59,6 +57,9 @@ module.exports = {
       //  ```
       //--------------------------------------------------------------------------
 
+      adapter: require('sails-mysql'),
+      url: 'mysql://appUser:9RLbOmXmKIZcfdhCB1q2gdTkCwo7VXlkGCTYb@mysql:3306/miluim',
+
       /****************************************************************************
       *                                                                           *
       * More adapter-specific options                                             *
@@ -74,6 +75,10 @@ module.exports = {
 
     },
 
+    /*cache: {
+      adapter: 'sails-redis',
+      url: 'redis://redis:6379',
+    },*/
   },
 
 
@@ -148,9 +153,10 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      // allowOrigins: [
-      //   'https://example.com',
-      // ]
+      allowOrigins: [
+        'https://miluim.vercel.app',
+        'http://localhost:3000',
+      ]
     },
 
   },
@@ -236,7 +242,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cookie: {
-      // secure: true,
+      secure: true,
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     },
 
@@ -265,10 +271,12 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    // onlyAllowOrigins: [
-    //   'https://example.com',
-    //   'https://staging.example.com',
-    // ],
+    onlyAllowOrigins: [
+      'https://example.com',
+      'https://staging.example.com',
+      'https://miluim.vercel.app',
+      'http://localhost:3000',
+    ],
 
 
     /***************************************************************************
@@ -340,7 +348,7 @@ module.exports = {
     * (https://sailsjs.com/config/http)                                        *
     *                                                                          *
     ***************************************************************************/
-    // trustProxy: true,
+    trustProxy: true,
 
   },
 
@@ -355,7 +363,7 @@ module.exports = {
   * this, just try deploying without setting it and see if it works.)       *
   *                                                                         *
   ***************************************************************************/
-  // port: 80,
+  port: 5000,
 
 
 
@@ -389,8 +397,9 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'https://example.com',
-    internalEmailAddress: 'support@example.com',
+    baseUrl: 'https://localhost:5000',
+    frontendUrl: 'https://paymentservice-stg.shibadragon.app',
+    internalEmailAddress: 'no-reply@example.com',
 
     // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
     // stripeSecret: 'sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm',
@@ -406,7 +415,5 @@ module.exports = {
     //--------------------------------------------------------------------------
 
   },
-
-
 
 };
