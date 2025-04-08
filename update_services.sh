@@ -12,8 +12,6 @@ git pull
 # Define the array with the names of the service folders
 services=("idfService")  # Add more services as needed
 
-# Define the source models directory
-SOURCE_DIR="/home/idfProject/models"
 
 # Loop over each service in the array
 for service in "${services[@]}"; do
@@ -39,10 +37,5 @@ for service in "${services[@]}"; do
     # Restart the service
     docker compose up --no-deps -d "$service"
 done
-
-# Update seperately for the socketService
-
-docker compose build socketservice
-docker compose up --no-deps -d socketservice
 
 echo "All services processed Kubi Kubiyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
