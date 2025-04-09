@@ -33,7 +33,9 @@ module.exports.security = {
     allowOrigins: [
       'http://localhost:1337', 
       'http://localhost:1338', 
-      'http://localhost:3000'
+      'http://localhost:3000',
+      'https://miluim.vercel.app',
+      'http://miluim.vercel.app',
     ],
     allowCredentials: true,
     allowRequestHeaders: 'content-type, authorization',
