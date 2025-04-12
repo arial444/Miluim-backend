@@ -1,7 +1,7 @@
 module.exports = {
     get: async (req, res) => {
         try {
-            const soldiers = await Soldier.find();
+            const soldiers = await sails.sendNativeQuery('CALL GetAllSoldiers()');
             return res.json(soldiers);
         } catch (error) {
             return res.serverError(error);
