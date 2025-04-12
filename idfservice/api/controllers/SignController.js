@@ -2,7 +2,13 @@ module.exports = {
     // Fetch all signs
     get: async (req, res) => {
         try {
-            const signs = await Sign.find();
+            const rawData = await sails.sendNativeQuery('CALL GetAllSigns()');
+            
+            if (!rawData || !rawData.rows) {
+                return res.notFound('No signs found');
+            }
+
+            const signs = rawData.rows[0];
             return res.json(signs);
         } catch (error) {
             return res.serverError(error);

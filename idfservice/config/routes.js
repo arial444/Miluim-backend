@@ -141,26 +141,6 @@ module.exports.routes = {
     action: 'update',
   },
 
-  'GET /signextra': {
-    controller: 'SignExtraController',
-    action: 'get',
-  },
-
-  'GET /signextra/:id': {
-    controller: 'SignExtraController',
-    action: 'view',
-  },
-
-  'POST /signextra': {
-    controller: 'SignExtraController',
-    action: 'create',
-  },
-
-  'PATCH /signextra/:id': {
-    controller: 'SignExtraController',
-    action: 'update',
-  },
-
   'GET /soldierassign': {
     controller: 'SoldierAssignController',
     action: 'get',
