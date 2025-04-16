@@ -33,10 +33,10 @@ module.exports = {
     create: async (req, res) => {
         try {
             // Check if a sign with the same number and name already exists
-            // const existingSign = await Sign.findOne({ number: req.body.number, name: req.body.name });
-            // if (existingSign) {
-            //     return res.badRequest('this item already in use');
-            // }
+            const existingSign = await Sign.findOne({ soldierId: req.body.soldierId, item: req.body.item });
+            if (existingSign) {
+                return res.badRequest('this person already has this item');
+            }
 
             // Create the new sign
             const sign = await Sign.create(req.body).fetch();
@@ -49,6 +49,12 @@ module.exports = {
     // Update an existing sign
     update: async (req, res) => {
         try {
+            // Check if a sign with the same number and name already exists
+            const existingSign = await Sign.findOne({ soldierId: req.body.soldierId, item: req.body.item });
+            if (existingSign) {
+                return res.badRequest('this person already has this item');
+            }
+
             const sign = await Sign.updateOne({ id: req.params.id }).set(req.body);
             if (!sign) {
                 return res.notFound('Sign not found');

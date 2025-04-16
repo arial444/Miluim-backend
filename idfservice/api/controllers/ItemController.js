@@ -25,6 +25,12 @@ module.exports = {
     // Create a new item
     create: async (req, res) => {
         try {
+            // Check if item is already exists
+            const existingItem = await Item.findOne({ name: req.body.name });
+            if (existingItem) {
+                return res.badRequest('Item already exists');
+            }
+
             // Create the new item
             const item = await Item.create(req.body).fetch();
             return res.status(201).json(item);
@@ -36,6 +42,12 @@ module.exports = {
     // Update an existing item
     update: async (req, res) => {
         try {
+            // Check if item is already exists
+            const existingItem = await Item.findOne({ name: req.body.name });
+            if (existingItem) {
+                return res.badRequest('Item already exists');
+            }
+            
             const item = await Item.updateOne({ id: req.params.id }).set(req.body);
             if (!item) {
                 return res.notFound('Item not found');
