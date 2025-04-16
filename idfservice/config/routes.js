@@ -141,6 +141,11 @@ module.exports.routes = {
     action: 'update',
   },
 
+  'DELETE /sign/:id': {
+    controller: 'SignController',
+    action: 'delete',
+  },
+
   'GET /soldierassign': {
     controller: 'SoldierAssignController',
     action: 'get',

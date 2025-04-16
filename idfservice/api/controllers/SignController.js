@@ -59,4 +59,16 @@ module.exports = {
             return res.serverError(error);
         }
     },
+
+    delete: async (req, res) => {
+        try {
+            const sign = await Sign.destroyOne({ id: req.params.id });
+            if (!sign) {
+                return res.notFound('Sign not found');
+            }
+            return res.json(sign);
+        } catch (error) {
+            return res.serverError(error);
+        }
+    },
 };
