@@ -42,12 +42,7 @@ module.exports = {
     // Update an existing item
     update: async (req, res) => {
         try {
-            // Check if item is already exists
-            const existingItem = await Item.findOne({ name: req.body.name });
-            if (existingItem) {
-                return res.badRequest('Item already exists');
-            }
-            
+
             const item = await Item.updateOne({ id: req.params.id }).set(req.body);
             if (!item) {
                 return res.notFound('Item not found');

@@ -49,11 +49,6 @@ module.exports = {
     // Update an existing sign
     update: async (req, res) => {
         try {
-            // Check if a sign with the same number and name already exists
-            const existingSign = await Sign.findOne({ soldierId: req.body.soldierId, item: req.body.item });
-            if (existingSign) {
-                return res.badRequest('this person already has this item');
-            }
 
             const sign = await Sign.updateOne({ id: req.params.id }).set(req.body);
             if (!sign) {
