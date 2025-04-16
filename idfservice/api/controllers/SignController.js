@@ -2,7 +2,8 @@ module.exports = {
     // Fetch all signs
     get: async (req, res) => {
         try {
-            const rawData = await sails.sendNativeQuery('CALL GetAllSigns()');
+            const { itemId, departmentId } = req.query;
+            const rawData = await sails.sendNativeQuery('CALL GetAllSigns($1, $2)', [itemId, departmentId]);
             
             if (!rawData || !rawData.rows) {
                 return res.notFound('No signs found');
@@ -31,6 +32,12 @@ module.exports = {
     // Create a new sign
     create: async (req, res) => {
         try {
+            // Check if a sign with the same number and name already exists
+            // const existingSign = await Sign.findOne({ number: req.body.number, name: req.body.name });
+            // if (existingSign) {
+            //     return res.badRequest('this item already in use');
+            // }
+
             // Create the new sign
             const sign = await Sign.create(req.body).fetch();
             return res.status(201).json(sign);

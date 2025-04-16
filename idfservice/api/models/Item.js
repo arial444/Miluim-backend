@@ -1,5 +1,3 @@
-const { tableName } = require("./Soldier");
-
 module.exports = {
     attributes: {
         name: {
