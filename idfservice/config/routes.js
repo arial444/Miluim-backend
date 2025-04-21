@@ -166,6 +166,26 @@ module.exports.routes = {
     action: 'update',
   },
 
+  'GET /itemset': {
+    controller: 'ItemSetController',
+    action: 'get',
+  },
+
+  'GET /itemset/:id': {
+    controller: 'ItemSetController',
+    action: 'view',
+  },
+
+  'POST /itemset': {
+    controller: 'ItemSetController',
+    action: 'create',
+  },
+
+  'PATCH /itemset/:id': {
+    controller: 'ItemSetController',
+    action: 'update',
+  },
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
