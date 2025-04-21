@@ -10,5 +10,5 @@ module.exports = {
         },
     },
 
-    tableName: 'itemSets',
+    tableName: 'itemsets',
 }
