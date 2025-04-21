@@ -136,6 +136,11 @@ module.exports.routes = {
     action: 'create',
   },
 
+  'POST /sign-set': {
+    controller: 'SignController',
+    action: 'createSet',
+  },
+
   'PATCH /sign/:id': {
     controller: 'SignController',
     action: 'update',

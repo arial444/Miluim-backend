@@ -46,6 +46,42 @@ module.exports = {
         }
     },
 
+    // Create a new sign on set
+    createSet: async (req, res) => {
+        const { soldierId, currentHolder, amount, items, comment } = req.body;
+
+        try {
+            if (!items && items.length === 0) {
+                return res.badRequest('No items provided');
+            }
+
+            items.forEach(async (item) => {
+                // Check if a sign with the same number and name already exists
+                const existingSign = await Sign.findOne({ soldierId, item });
+                if (existingSign) {
+                    return;
+                }
+
+                // Create the new sign
+                const sign = await Sign.create({
+                    soldierId,
+                    currentHolder,
+                    amount,
+                    item,
+                    comment,
+                }).fetch();
+
+                if (!sign) {
+                    return res.badRequest('Failed to create sign');
+                }
+            });
+
+            return res.status(201).json({ message: 'Signs created successfully' });
+        } catch (error) {
+            return res.serverError(error);
+        }
+    },
+
     // Update an existing sign
     update: async (req, res) => {
         try {
