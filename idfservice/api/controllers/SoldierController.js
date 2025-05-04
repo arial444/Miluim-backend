@@ -31,7 +31,22 @@ module.exports = {
                 req.body.birthday = new Date(req.body.birthday);
             }
 
+            const assigns = req.body.assigns || [];
+
             const soldier = await Soldier.create(req.body).fetch();
+
+            if (assigns) {
+
+                await SoldierAssign.destroy({ soldierId: soldier.id });
+                
+                for (const assign of assigns) {
+                    await SoldierAssign.create({
+                        soldierId: soldier.id,
+                        assign,
+                    });
+                }
+            }
+
             return res.status(201).json(soldier);
         } catch (error) {
             return res.serverError(error);
@@ -43,11 +58,26 @@ module.exports = {
             if (req.body.birthday) {
                 req.body.birthday = new Date(req.body.birthday);
             }
-
+            
+            const assigns = req.body.assigns || [];
+            
             const soldier = await Soldier.updateOne({ id: req.params.id }).set(req.body);
             if (!soldier) {
                 return res.notFound('Soldier not found');
             }
+
+            if (assigns) {
+
+                await SoldierAssign.destroy({ soldierId: soldier.id });
+
+                for (const assign of assigns) {
+                    await SoldierAssign.create({
+                        soldierId: soldier.id,
+                        assign,
+                    });
+                }
+            }
+
             return res.json(soldier);
         } catch (error) {
             return res.serverError(error);
