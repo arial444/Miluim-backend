@@ -1,7 +1,8 @@
 module.exports = {
     get: async (req, res) => {
         try {
-            const rawData = await sails.sendNativeQuery('CALL GetAllSoldiers()');
+            const { assignId, departmentId } = req.query;
+            const rawData = await sails.sendNativeQuery('CALL GetAllSoldiers($1, $2)', [assignId, departmentId]);
             
             if (!rawData || !rawData.rows) {
                 return res.notFound('No soldiers found');
