@@ -26,6 +26,10 @@ module.exports = {
             maxLength: 1050,
             defaultsTo: '',
         },
+        signature: {
+            type: 'string',
+            required: true,
+        },
     },
 
     tableName: 'signs'

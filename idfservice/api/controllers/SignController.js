@@ -48,7 +48,7 @@ module.exports = {
 
     // Create a new sign on set
     createSet: async (req, res) => {
-        const { soldierId, currentHolder, amount, items, comment } = req.body;
+        const { soldierId, currentHolder, amount, items, comment, signature } = req.body;
 
         try {
             if (!items && items.length === 0) {
@@ -69,6 +69,7 @@ module.exports = {
                     amount,
                     item,
                     comment,
+                    signature,
                 }).fetch();
 
                 if (!sign) {
