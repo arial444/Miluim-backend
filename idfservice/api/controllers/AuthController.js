@@ -44,13 +44,26 @@ module.exports = {
             const match = await bcrypt.compare(password, user.password);
             if (!match) return res.status(401).json({ error: 'Invalid username or password' });
 
+            const rawPermissions = await Permission.find({ roleId: user.role.id });
+
+            const permissions = rawPermissions.reduce((acc, perm) => {
+                acc[perm.model] = {
+                    view: perm.view,
+                    create: perm.create,
+                    edit: perm.edit,
+                    delete: perm.delete
+                };
+                return acc;
+            }, {});
+
             const token = jwt.sign({ id: user.id, role: user.role }, sails.config.custom.jwtSecret, { expiresIn: '1d' });
 
             req.session.userId = user.id;
+            req.session.permissions = permissions;
             req.session.token = token;
             req.session.loggedInAt = new Date();
 
-            return res.json({ token, user });
+            return res.json({ token, user, permissions });
         } catch (err) {
             sails.log.error(err);
             return res.status(500).json({ error: 'Server error during login' });

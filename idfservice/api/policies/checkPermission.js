@@ -13,8 +13,6 @@ module.exports = async function (req, res, proceed) {
             model = model.replace('Controller', '').trim();
         }
 
-        console.log('Model:', model);
-
         const permission = await Permission.findOne({
             roleId: user.role,
             model: model.toLowerCase(),
