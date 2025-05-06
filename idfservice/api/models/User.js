@@ -25,9 +25,8 @@ module.exports = {
     },
 
     role: {
-      type: 'string',
-      isIn: ['user', 'admin', 'manager'],
-      defaultsTo: 'user',
+      model: 'role',
+      required: true,
     },
   },
 

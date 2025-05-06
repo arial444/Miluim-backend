@@ -12,7 +12,7 @@ const { logout } = require("../api/controllers/AuthController");
 
 module.exports.policies = {
 
-  '*': ['isAuthenticated'],
+  '*': ['isAuthenticated', 'checkPermission'],
 
   AuthController: {
     login: true,

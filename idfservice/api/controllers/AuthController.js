@@ -20,7 +20,7 @@ module.exports = {
                 password,
                 name,
                 lastname,
-                role: role || 'user' // default to "user"
+                role
             }).fetch();
 
             return res.status(201).json({ user: newUser });
@@ -38,7 +38,7 @@ module.exports = {
                 return res.status(400).json({ error: 'Missing username or password' });
             }
 
-            const user = await User.findOne({ username });
+            const user = await User.findOne({ username }).populate('role');
             if (!user) return res.status(401).json({ error: 'Invalid username or password' });
 
             const match = await bcrypt.compare(password, user.password);
