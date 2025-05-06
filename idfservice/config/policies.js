@@ -8,7 +8,17 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
+const { logout } = require("../api/controllers/AuthController");
+
 module.exports.policies = {
+
+  '*': ['isAuthenticated'],
+
+  AuthController: {
+    login: true,
+    register: true,
+    logout: true
+  },
 
   /***************************************************************************
   *                                                                          *

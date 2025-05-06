@@ -191,6 +191,21 @@ module.exports.routes = {
     action: 'update',
   },
 
+  'POST /auth/register': {
+    controller: 'AuthController',
+    action: 'register',
+  },
+
+  'POST /auth/login': {
+    controller: 'AuthController',
+    action: 'login',
+  },
+
+  'POST /auth/logout': {
+    controller: 'AuthController',
+    action: 'logout',
+  },
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

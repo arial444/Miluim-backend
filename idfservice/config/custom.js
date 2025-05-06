@@ -10,6 +10,8 @@
 
 module.exports.custom = {
 
+  jwtSecret: '!@#S3cR3tK3y#@!',
+
   /***************************************************************************
   *                                                                          *
   * Any other custom config this Sails app should use during development.    *
