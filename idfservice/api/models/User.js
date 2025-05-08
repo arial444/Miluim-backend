@@ -28,6 +28,12 @@ module.exports = {
       model: 'role',
       required: true,
     },
+
+    status: {
+      type: 'string',
+      isIn: ['active', 'disabled'],
+      defaultsTo: 'active',
+    },
   },
 
   customToJSON: function () {

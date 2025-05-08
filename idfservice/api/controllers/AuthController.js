@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
     register: async function (req, res) {
         try {
-            const { username, password, name, lastname, role } = req.body;
+            const { username, password, name, lastname, role, status } = req.body;
 
             if (!username || !password || !name) {
                 return res.status(400).json({ error: 'Missing required fields' });
@@ -20,7 +20,8 @@ module.exports = {
                 password,
                 name,
                 lastname,
-                role
+                role,
+                status: status || 'active'
             }).fetch();
 
             return res.status(201).json({ user: newUser });
@@ -40,6 +41,10 @@ module.exports = {
 
             const user = await User.findOne({ username }).populate('role');
             if (!user) return res.status(401).json({ error: 'Invalid username or password' });
+
+            if (user.status !== 'active') {
+                return res.status(403).json({ error: 'User is disabled' });
+            }
 
             const match = await bcrypt.compare(password, user.password);
             if (!match) return res.status(401).json({ error: 'Invalid username or password' });
